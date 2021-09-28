@@ -67,8 +67,20 @@ namespace Exercises.Level1
         /// </summary>
         public int CaughtSpeeding(int speed, bool isBirthday)
         {
-            throw new NotImplementedException();
+            if (speed <= 60 || speed <= 65 && isBirthday)
+            {
+                return 0;
+            }
+
+            if (speed >= 61 && speed <= 80 || speed >= 66 && speed <= 85 && isBirthday)
+            {
+                return 1;
+            }
+
+            return 2;
         }
+
+
 
         /// <summary>
         /// Given 2 ints, a and b, return their sum. However, sums in the range 10..19 inclusive, are
@@ -79,8 +91,14 @@ namespace Exercises.Level1
         /// sortaSum(10, 11) → 21
         /// </summary>
         public int SortaSum(int a, int b)
+
         {
-            throw new NotImplementedException();
+            int c = a + b;
+            if ((c >= 10 && c <= 19))
+            {
+                return 20;
+            }
+            return c;
         }
 
         /// <summary>
@@ -96,8 +114,30 @@ namespace Exercises.Level1
         /// </summary>
         public string AlarmClock(int day, bool vacation)
         {
-            throw new NotImplementedException();
+
+            string alarm7 = "7:00";
+            string alarm10 = "10:00";
+
+            if (vacation)
+            {
+                if (day == 0 || day == 6)
+                {
+                    return "off";
+                }
+                return alarm10;
+
+            }
+
+                if (day == 0 || day == 6)
+            {
+                return alarm10;
+            }
+            return alarm7;
+
+            
         }
+
+        
 
         /// <summary>
         /// The number 6 is a truly great number. Given two int values, a and b, return true if either
@@ -110,7 +150,11 @@ namespace Exercises.Level1
         /// </summary>
         public bool Love6(int a, int b)
         {
-            throw new NotImplementedException();
+            if (a == 6 || b==6 || a-b == 6 || b-a==6 || a+b==6)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -432,7 +476,22 @@ namespace Exercises.Level1
         /// </summary>
         public int SumLimit(int a, int b)
         {
-            throw new NotImplementedException();
+            int ABsum = a + b;
+            string A_string = a.ToString();
+            int A_lenght = A_string.Length;
+
+            string ABstring = ABsum.ToString();
+            int AB_sum_lenght = ABstring.Length;
+
+        if (AB_sum_lenght == A_lenght)
+            {
+                return ABsum;
+            }
+
+            return a;
+
+
         }
+
     }
 }
