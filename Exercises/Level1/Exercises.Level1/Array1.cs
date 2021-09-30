@@ -1,7 +1,9 @@
 ﻿using System;
-
+using System.Linq;
 namespace Exercises.Level1
 {
+
+
     /// <summary>
     /// Basic array problems -- no loops.. Use a[0], a[1], ... to access elements in an array, a.Length is the length of array.
     /// Allocate a new array like this: int[] a = new int[10];
@@ -18,7 +20,16 @@ namespace Exercises.Level1
         /// </summary>
         public bool FirstLast6(int[] nums)
         {
-            throw new NotImplementedException();
+            int first = nums[0];
+
+            int lastIndex = nums.Length - 1;
+            int last = nums[lastIndex];
+
+            if (first == 6 || last == 6)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -31,7 +42,21 @@ namespace Exercises.Level1
         /// </summary>
         public bool SameFirstLast(int[] nums)
         {
-            throw new NotImplementedException();
+            if (nums.Length == 0) //ja masīva garums nav nulle
+            {
+                return false;
+            }
+
+            int first = nums[0];
+
+            int lastIndex = nums.Length - 1;
+            int last = nums[lastIndex];
+
+            if (nums.Length > 0 && first == last)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -41,7 +66,20 @@ namespace Exercises.Level1
         /// </summary>
         public int[] MakePi()
         {
-            throw new NotImplementedException();
+
+            int[] arrayMake_a_pee = new int[3];
+            arrayMake_a_pee[0] = 3;
+            arrayMake_a_pee[1] = 1;
+            arrayMake_a_pee[2] = 4;
+
+            return arrayMake_a_pee;
+
+
+            //  int[] array = { 3, 1, 4 };    // masīvs ar 3 elementiem iekšā
+            //    return array;
+
+
+
         }
 
         /// <summary>
@@ -54,7 +92,23 @@ namespace Exercises.Level1
         /// </summary>
         public bool CommonEnd(int[] a, int[] b)
         {
-            throw new NotImplementedException();
+
+
+
+            int firstA = a[0];
+            int lastIndexA = a.Length - 1;
+            int lastA = a[lastIndexA];
+            int firstB = b[0];
+            int lastIndexB = b.Length - 1;
+            int lastB = b[lastIndexB];
+
+            if (firstA == firstB || lastA == lastB)
+            {
+                return true;
+            }
+
+            return false;
+            // ^1 = priekšpēdējais masīva skaitlis = tas pats, kas index mīnus viens
         }
 
         /// <summary>
@@ -64,10 +118,32 @@ namespace Exercises.Level1
         /// sum3([5, 11, 2]) → 18
         /// sum3([7, 0, 0]) → 7
         /// </summary>
-        public int Sum3(int[] nums)
+        public int Sum3(int[] FewNumbers)   //te Sum3 ir kaut kāds skaitlis, kas iekšienē ir kaut kāds masīvs ar nosaukumu "FewNumbers"
         {
-            throw new NotImplementedException();
+
+            int FirstNum = FewNumbers[0];
+            int SecondNum = FewNumbers[1];
+            int ThirdNum = FewNumbers[2];
+
+            int AllTogether = FirstNum + SecondNum + ThirdNum;
+
+            {
+                return AllTogether;
+            }
         }
+
+
+        //Variants, lietojot ciklu: 
+
+        //int sum = 0;
+        //for (int cipars = 0; cipars < 3   /* tā kā zināms, ka masīvā ir 3 cipari, tad pēdējais masīva cipara indekss ir 2, tātad 3 ir aiz masīva un vajag atgriezt visus, kas ir masīvā līdz indeksam nr.2 */; cipars++   /* šis nozīmē, ka vajag skatīties uz nākamo ciparu */)  //for izdos ārā visus masīvā esošos skaitļus
+        //{
+        //    sum += FewNumbers[cipars];    // += pieskaita klāt pašu summu pie nākamā saskaitāmā (0 + 
+        //}
+        //return sum;
+
+
+
 
         /// <summary>
         /// Given an array of ints length 3, return an array with the elements "rotated left" so {1, 2,
@@ -77,10 +153,13 @@ namespace Exercises.Level1
         /// rotateLeft3([5, 11, 9]) → [11, 9, 5]
         /// rotateLeft3([7, 0, 0]) → [0, 0, 7]
         /// </summary>
-        public int[] RotateLeft3(int[] nums)
+        public int[] RotateLeft3(int[] CoupleOfNumbers)
         {
-            throw new NotImplementedException();
+            return new int[] { CoupleOfNumbers[1], CoupleOfNumbers[2], CoupleOfNumbers[0] };  //??? kāpēc tur vajag to new?? Ka jauns masīvs??
+            //saprotu, ka te int [] un tālāk sekojošajās iekavās ir noteikti skaitļi. Iekavās sākot no kreisās puses tiek piešķirti indeksi. Pirmajam skaitlim jaunais indekss būs nulle, bet šis jaunais skaitlis ir tas, kas iepriekš bija [1]. 
         }
+
+
 
         /// <summary>
         /// Given an array of ints length 3, return an array with the elements "rotated left" so {1, 2,
@@ -92,7 +171,7 @@ namespace Exercises.Level1
         /// </summary>
         public int[] Reverse3(int[] nums)
         {
-            throw new NotImplementedException();
+            return new int[] { nums[2], nums[1], nums[0] };
         }
 
         /// <summary>
@@ -103,10 +182,26 @@ namespace Exercises.Level1
         /// maxEnd3([11, 5, 9]) → [11, 11, 11]
         /// maxEnd3([2, 11, 3]) → [3, 3, 3]
         /// </summary>
-        public int[] MaxEnd3(int[] nums)
+        public int[] MaxEnd3(int[] FindMax)
         {
-            throw new NotImplementedException();
+
+            if (FindMax[0] >= FindMax[2])
+            {
+                FindMax[0] = FindMax[0];   // ??? kāpēc te vajag atkārtot pirmo elementu?
+                                           // Jo, ja tas nulltais ir vislielākais, tad jau nekas nav jāmaina viņā, jo viņš jau ir vislielākais 
+                FindMax[1] = FindMax[0];
+                FindMax[2] = FindMax[0];
+            }
+
+            else if (FindMax[0] <= FindMax[2])
+            {
+                FindMax[2] = FindMax[2];
+                FindMax[0] = FindMax[2];
+                FindMax[1] = FindMax[2];
+            }
+            return FindMax;
         }
+
 
         /// <summary>
         /// Given an array of ints, return the sum of the first 2 elements in the array. If the array
