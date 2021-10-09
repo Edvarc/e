@@ -17,8 +17,27 @@ namespace Exercises.Level1
         /// </summary>
         public int CountEvens(int[] nums)
         {
-            throw new NotImplementedException();
+            /* int Even = 0;
+             foreach (int Uksis in nums) 
+
+             {
+                 if (nums[Uksis] % 2 == 0)
+                     Even++;
+             }
+             return Even;
+            */
+
+            int count = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] % 2 == 0)
+                    count++;
+            }
+            return count;
         }
+
+
+
 
         /// <summary>
         /// Given an array length 1 or more of ints, return the difference between the largest and
@@ -31,7 +50,19 @@ namespace Exercises.Level1
         /// </summary>
         public int BigDiff(int[] nums)
         {
-            throw new NotImplementedException();
+            //  int min = nums.Min();
+            int Largest_Int = nums[0]; 
+            int Smallest_Int = nums[0]; 
+           
+            for (int i = 0; i < nums.Length; i++)
+
+            {
+                Largest_Int = Math.Max(Largest_Int, nums[i]);
+                Smallest_Int = Math.Min(Smallest_Int, nums[i]); 
+            }
+
+            return Largest_Int - Smallest_Int;
+
         }
 
         /// <summary>
