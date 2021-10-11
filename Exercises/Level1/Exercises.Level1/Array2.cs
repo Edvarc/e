@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Exercises.Level1
 {
@@ -51,14 +52,14 @@ namespace Exercises.Level1
         public int BigDiff(int[] nums)
         {
             //  int min = nums.Min();
-            int Largest_Int = nums[0]; 
-            int Smallest_Int = nums[0]; 
-           
+            int Largest_Int = nums[0];   //Kāpēc Largest int nevar būt nulle? Kāpēc tam jābūt masīva pirmajam skaitlim? 
+            int Smallest_Int = nums[0];
+
             for (int i = 0; i < nums.Length; i++)
 
             {
-                Largest_Int = Math.Max(Largest_Int, nums[i]);
-                Smallest_Int = Math.Min(Smallest_Int, nums[i]); 
+                Largest_Int = Math.Max(Largest_Int, nums[i]);    //Kāpēc te iekavās jāliek Largest int, nevis, piemēram, nulle? T.i., kāpēc nevar būt šādi: (0, nums[i]) ?
+                Smallest_Int = Math.Min(Smallest_Int, nums[i]);
             }
 
             return Largest_Int - Smallest_Int;
@@ -78,7 +79,21 @@ namespace Exercises.Level1
         /// </summary>
         public int CenteredAverage(int[] nums)
         {
-            throw new NotImplementedException();
+            int Sum = 0;
+            int Largest_Int = nums[0];
+            int Smallest_Int = nums[0];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Largest_Int = Math.Max(Largest_Int, nums[i]);
+                Smallest_Int = Math.Min(Smallest_Int, nums[i]);
+                Sum = nums.Sum();
+            }
+
+            return (Sum - Largest_Int - Smallest_Int) / (nums.Length - 2);
+
+
+
+            ;
         }
 
         /// <summary>
@@ -459,16 +474,67 @@ namespace Exercises.Level1
         /// <summary>
         /// Return a version of the given array where each zero value in the array is replaced by the
         /// largest odd value to the right of the zero in the array. If there is no odd value to the right
-        /// of the zero, leave the zero as a zero.
+        /// of the zero, leave the zero as a zero.   ODD = NEPĀRA!
         /// 
         /// zeroMax([0, 5, 0, 3]) → [5, 5, 3, 3]
         /// zeroMax([0, 4, 0, 3]) → [3, 4, 3, 3]
         /// zeroMax([0, 1, 0]) → [1, 1, 0]
         /// </summary>
         public int[] ZeroMax(int[] nums)
+
         {
-            throw new NotImplementedException();
+
+            int BigOdd = nums[0];   // nulle ir tas, kas ir jāatrod un jāaizstāj ar kaut ko citu
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 0)     //te kods apstājas. Skaitli vajag aizstāt ar vajadzīgo. 
+                                      // Bet vajadzīgo ir jāatrod = jāizdabū laukā viss masīvs.
+                                      // Vajadzīgā skaitļa indekss ir vismaz par 1 lielāks kā nullei
+                {
+                    for (int Other = i; Other < nums.Length; Other++)  //Other = kaut kāds apzīmējums, lai tikai dabūtu ārā visus masīva skaitļus
+                    {
+                        if ((Array.IndexOf(nums, Other) > Array.IndexOf(nums, i)) && (nums[Other] % 2 != 0))   //ja Other dalīts ar divi atlikumā nav nulle jeb ja Other ir nepāra skaitlis un tā indekss ir lielāks kā i
+                            BigOdd = Math.Max(BigOdd, nums[Other]);    //BigOdd  tagad ir lielākais no nepāra skaitļiem
+
+                    }
+                    nums[i] = BigOdd; //aizstāju masīva nulli ar masīva lielāko nepāra skaitli 
+                }
+                
+            }
+
+
+            return nums;
         }
+
+
+
+
+
+
+
+        /* public int[] ZeroMax(int[] nums)
+         {
+             int acum = 0;
+             int i = 0;
+             for (i = 0; i < nums.Length; i++)
+             {
+                 if (nums[i] == 0)
+                 {
+                     for (int j = i; j < nums.Length; j++)
+                     {
+                         if (nums[j] % 2 != 0)
+                         {
+                             acum = nums[j];
+                             break;
+                         }
+                     }
+                     nums[i] = acum;
+                 }
+
+             }
+             return nums;
+         }
+        */
 
         /// <summary>
         /// Return an array that contains the exact same numbers as the given array, but rearranged
