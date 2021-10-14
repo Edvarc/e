@@ -30,7 +30,6 @@ namespace Exercises.Level1
 
 
 
-
         /// <summary>
         /// Given an array length 1 or more of ints, return the difference between the largest and
         /// smallest values in the array. Note: the built-in Math.min(v1, v2) and Math.max(v1, v2)
@@ -148,7 +147,16 @@ namespace Exercises.Level1
         /// </summary>
         public bool Sum28(int[] nums)
         {
-            throw new NotImplementedException();
+            int SumofTwo = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 2)
+                    SumofTwo += 2;   //te jāpalielina nevis par 1, bet par 2!
+
+            }
+
+            return SumofTwo == 8;
         }
 
         /// <summary>
@@ -188,11 +196,11 @@ namespace Exercises.Level1
         public int[] FizzArray(int n)
         {
 
-            int[] c; 
+            int[] c;
             c = new int[n];
-            for (int i = 0; i <= n; i++)   // masīvā esošo 
-                c[i] = i;
-            
+            for (int i = 0; i < n; i++)   // masīvā esošo skaitļu skaits "n" lielāks par vislielāko indeksu "i" (pēc katras izgriešanas vērtības indeksu i par 1 palielinās (dēļ i++)).
+                c[i] = n;
+
             return c
             ;
         }
