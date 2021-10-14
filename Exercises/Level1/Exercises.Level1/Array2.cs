@@ -18,15 +18,6 @@ namespace Exercises.Level1
         /// </summary>
         public int CountEvens(int[] nums)
         {
-            /* int Even = 0;
-             foreach (int Uksis in nums) 
-
-             {
-                 if (nums[Uksis] % 2 == 0)
-                     Even++;
-             }
-             return Even;
-            */
 
             int count = 0;
             for (int i = 0; i < nums.Length; i++)
@@ -169,7 +160,19 @@ namespace Exercises.Level1
         /// </summary>
         public bool More14(int[] nums)
         {
-            throw new NotImplementedException();
+            int HowManyOnes = 0;
+            int HowManyFours = 0;
+
+            foreach (int Numbers in nums)
+            {
+                if (Numbers == 1)
+                    HowManyOnes++;
+                if (Numbers == 4)
+                    HowManyFours++;
+            }
+
+            return HowManyOnes > HowManyFours;
+
         }
 
         /// <summary>
@@ -184,7 +187,14 @@ namespace Exercises.Level1
         /// </summary>
         public int[] FizzArray(int n)
         {
-            throw new NotImplementedException();
+
+            int[] c; 
+            c = new int[n];
+            for (int i = 0; i <= n; i++)   // masīvā esošo 
+                c[i] = i;
+            
+            return c
+            ;
         }
 
         /// <summary>
@@ -499,7 +509,7 @@ namespace Exercises.Level1
                     }
                     nums[i] = BigOdd; //aizstāju masīva nulli ar masīva lielāko nepāra skaitli 
                 }
-                
+
             }
 
 
